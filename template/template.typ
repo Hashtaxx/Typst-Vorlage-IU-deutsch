@@ -39,11 +39,13 @@
 	)
 	
 	set par(
-  justify: true,
-  leading: leading,
-  spacing: leading + 6pt,
-  linebreaks: "optimized",
-)
+		justify: true,
+		leading: leading,
+		spacing: leading + 6pt,
+		linebreaks: "optimized",
+	)
+	
+	set list(marker: ([•], [•], [•]))
 	
 // Alte Überschriften bis April 2026
 	set heading(numbering: "1.1.1")
