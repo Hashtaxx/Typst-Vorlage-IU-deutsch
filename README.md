@@ -120,6 +120,7 @@ Anhänge werden im `anhang`-Block in `main.typ` mit `qfigure` eingefügt:
   [Quelle]
 )<iu_logo>
 ```
+</details>
 
 <details>
 <summary><b>Glossar nutzen</b></summary>
