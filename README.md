@@ -36,6 +36,7 @@ Es gelten die Richtlinien für schriftliche Prüfungsformen sowie der Zitierleit
 1. [Typst](https://typst.app/) installieren (lokal über die [CLI](https://github.com/typst/typst) oder online über die [Web-App](https://typst.app/)).
 2. Dieses Repository herunterladen oder mit "use this template" klonen.
 3. Die Schriftart **Arial** muss auf dem System installiert sein (unter Linux z. B. via `ttf-mscorefonts-installer` bei Debian/Ubuntu).
+4. Aus rechtlichen Gründen wird kein IU-Logo mitgeliefert. Wenn du ein eigenes Logo verwenden möchtest, lege es als `img/logo.jpg` ab.
 
 ## Anwendung
 
@@ -43,7 +44,8 @@ Es gelten die Richtlinien für schriftliche Prüfungsformen sowie der Zitierleit
 
 Der gesamte Inhalt der Arbeit wird in `main.typ` geschrieben – dort werden Titelblatt-Daten, Text, Anhang und Glossareinträge gepflegt. Dieselbe Datei dient auch zur Vorschau und zum Export. Verzeichnisse (Inhalts-, Abbildungs-, Tabellen- und Abkürzungsverzeichnis) werden automatisch erstellt.
 
-### Projektstruktur
+<details>
+<summary><b>Projektstruktur</b></summary>
 
 | Datei / Ordner | Beschreibung |
 | --- | --- |
@@ -56,10 +58,7 @@ Der gesamte Inhalt der Arbeit wird in `main.typ` geschrieben – dort werden Tit
 | `img/` | Bilder und Logo |
 | `scripts/` | Zotero-Postscript |
 
-## Logo
-Aus rechtlichen Gründen wird kein IU-Logo mitgeliefert.
-
-Wenn du ein eigenes Logo verwenden möchtest, lege es als `img/logo.jpg` ab.
+</details>
 
 ### Kurzanleitung Typst-Syntax
 
