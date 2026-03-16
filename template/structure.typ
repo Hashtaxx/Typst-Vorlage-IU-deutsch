@@ -1,7 +1,7 @@
 // Dokumentstruktur: Baut das gesamte Dokument aus den Nutzerdaten zusammen.
 // Einbindung in main.typ über  #show: structure.with(...)
 
-#import "template.typ": conf as template, abk_print_entry
+#import "template.typ": conf as template, qfigure, abk_print_entry
 #import "@preview/glossarium:0.5.10": make-glossary, register-glossary, print-glossary
 #import "titelblatt.typ": titelblatt
 
@@ -151,7 +151,11 @@
     pagebreak()
   }
 
-  anhang-content
+  {
+    set figure(kind: "anhang")
+    show figure.where(kind: "anhang"): set block(above: 1em + 12pt)
+    anhang-content
+  }
 
   doc
 }

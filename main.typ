@@ -51,19 +51,14 @@
 // ══════════════════════════════════════════════════════════
 // Anhang
 // ══════════════════════════════════════════════════════════
-#let _qfigure = qfigure
 #let anhang = [
-  #set figure(kind: "anhang")
-  #let qfigure(content, cap, src, kind: "anhang") = _qfigure(content, cap, src)
-  #show figure.where(kind: "anhang"): set block(above: 1em + 12pt)
   //  Beispiel:
   //  #qfigure(
-  //    image("/img/IU_logo.jpg"),
+  //    image("/img/logo.jpg"),
   //    [IU Logo],
   //    [Quelle]
-  //  )<iu_logo>
+  //  )<logo>
   // 
-
 ]
 
 // ══════════════════════════════════════════════════════════

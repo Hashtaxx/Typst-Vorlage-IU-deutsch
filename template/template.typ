@@ -3,17 +3,26 @@
 // ── Titelseiten-Klassen ───────────────────────────────────────────────────────
 #let leading = 1em
 
-#let qfigure(content, cap, src) = figure(
+/// Erstellt eine Abbildung oder Tabelle mit Quellenangabe unterhalb des Inhalts.
+///
+/// ```typst
+/// #qfigure(image("/img/bild.jpg"), [Beschreibung], [Quelle])<key>
+/// ```
+///
+/// - content (content): Der anzuzeigende Inhalt (z.B. `image("....jpg",args)` oder `table([..][..])`).
+/// - caption (String): Beschriftung der Abbildung/Tabelle.
+/// - source (String): Quellenangabe, wird unter dem Inhalt angezeigt.
+#let qfigure(content, caption, source) = figure(
   stack(
     content, v(6pt),
     align(
       left,
       text(
         size: 10pt,
-      )[Quelle: #src]
+      )[Quelle: #source]
     )
   ),
-  caption: cap
+  caption: caption
 )
 
 #let anhang(body) = {
