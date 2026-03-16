@@ -86,13 +86,8 @@ $Mathematische Ausdrücke$
 @verweis-key
 ```
 
-Weiterführende Links:
-- [Typst Tutorial](https://typst.app/docs/tutorial/)
-- [Image-Dokumentation](https://typst.app/docs/reference/visualize/image/)
-- [Table-Dokumentation](https://typst.app/docs/reference/model/table/)
-- [Mathe-Notation](https://typst.app/docs/reference/math/)
-
-### Abbildungen und Tabellen beschriften
+<details>
+<summary><b>Abbildungen und Tabellen beschriften</b></summary>
 
 Mit der Funktion `qfigure(content, [caption], [Quelle])` können Abbildungen und Tabellen korrekt beschriftet werden:
 
@@ -111,8 +106,10 @@ Mit der Funktion `qfigure(content, [caption], [Quelle])` können Abbildungen und
   [Eigene Darstellung]
 )<tabelle-key>
 ```
+</details>
 
-### Anhang
+<details>
+<summary><b>Anhang nutzen</b></summary>
 
 Anhänge werden im `anhang`-Block in `main.typ` mit `qfigure` eingefügt:
 
@@ -124,7 +121,8 @@ Anhänge werden im `anhang`-Block in `main.typ` mit `qfigure` eingefügt:
 )<iu_logo>
 ```
 
-### Abkürzungen
+<details>
+<summary><b>Glossar nutzen</b></summary>
 
 Abkürzungen werden über das [Glossarium](https://typst.app/universe/package/glossarium)-Plugin verwaltet. Die Einträge werden in `main.typ` in der Liste `entry-list` definiert und können im Text mit `@abkürzung` referenziert werden. Das Abkürzungsverzeichnis wird nur angezeigt, wenn mindestens ein Eintrag referenziert wurde.
 
@@ -141,6 +139,14 @@ Abkürzungen werden über das [Glossarium](https://typst.app/universe/package/gl
 @ki:pl    // → KIs (Plural)
 @ki:long  // → Künstliche Intelligenz
 ```
+</details>
+
+Weiterführende Links:
+- [Typst Tutorial](https://typst.app/docs/tutorial/)
+- [Image-Dokumentation](https://typst.app/docs/reference/visualize/image/)
+- [Table-Dokumentation](https://typst.app/docs/reference/model/table/)
+- [Mathe-Notation](https://typst.app/docs/reference/math/)
+
 
 ## Zotero (optional)
 
