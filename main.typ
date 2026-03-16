@@ -1,133 +1,105 @@
-#import "template/template.typ": conf as template, qfigure, abk_print_entry
-#import "@preview/glossarium:0.5.10": make-glossary, register-glossary, print-glossary, gls, glspl
-#import "template/titelblatt.typ": titelblatt
-#import "content.typ": titel, pruefungsform, kursname, studiengang, author, matrikel, betreuertyp, betreuer, date, body, anhang, pagebreak_b4_abbildungsv, pagebreak_b4_glossar, pagebreak_b4_tabellenv, entry-list
+#import "template/structure.typ": structure
+#import "template/template.typ": qfigure
+#import "@preview/glossarium:0.5.10": gls, glspl
 
-#show: template.with()
-#show: make-glossary
-#register-glossary(entry-list)
+// ══════════════════════════════════════════════════════════
+// Daten für Titelblatt eingeben
+// Bei leerem Titel wird Kursname fett gedruckt
+// ══════════════════════════════════════════════════════════
+#let titel = ""
+#let pruefungsform = "Z. B. Seminararbeit"
+#let kursname = "Methoden der Einzel- und Gruppenberatung"
+#let studiengang = "Soziale Arbeit"
+#let author = "Max Mustermann"
+#let matrikel = "123456"
+#let betreuertyp = "Betreuende Person/ Tutor:in"
+#let betreuer = "Prof. Dr. Simone Musterfrau"
+#let date = datetime.today()
 
+// Manuelle Seitenumbrüche vor Verzeichnissen
+#let pagebreak_b4_abbildungsv = false
+#let pagebreak_b4_tabellenv = false
+#let pagebreak_b4_glossar = false
 
-// Metainformationen
-#set document(
-	title: if titel == "" { kursname } else { titel },
-	author: author,
-	description: pruefungsform,
-	date: date,
+// ══════════════════════════════════════════════════════════
+// Inhalt
+// ══════════════════════════════════════════════════════════
+#let body = [
+  // ── BODY START ────────────────────────────────────────────────
+  //
+  // Hier Text schreiben
+  // = Level 1 Überschrift
+  // == Level 2 Überschrift
+  // - Level 1 ul-Auzählung
+  // -- Level 2 ul-Auzählung
+  // + Level 1 ol-Aufzählung
+  // _kursiver Text_
+  // *fetter Text*
+  // $Mathemathische Ausdrücke$
+  // Zitat @qulle-key[S.~1--3] oder #cite(<quelle-key>) für mehr Einstellungen
+  // Verweis auf Anhang, Glossar, Abbildung mit @verweis-key
+  // Abbildungen mit custom-function #qfigure(image("quelle",args)|Table([Zelle1],[Zelle2]),[caption],[quelle])<key> 
+  // 
+  // -> Typst Tutorial: https://typst.app/docs/tutorial/
+  // -> mehr infos zu image: https://typst.app/docs/reference/visualize/image/
+  // -> mehr infos zu table: https://typst.app/docs/reference/model/table/
+  // -> mehr infos zu Mathe-Notation: https://typst.app/docs/reference/math/
+  // 
+  // ────────────────────────────────────────────────── BODY END ── 
+]
+
+// ══════════════════════════════════════════════════════════
+// Anhang
+// ══════════════════════════════════════════════════════════
+#let _qfigure = qfigure
+#let anhang = [
+  #set figure(kind: "anhang")
+  #let qfigure(content, cap, src, kind: "anhang") = _qfigure(content, cap, src)
+  #show figure.where(kind: "anhang"): set block(above: 1em + 12pt)
+  //  Beispiel:
+  //  #qfigure(
+  //    image("/img/IU_logo.jpg"),
+  //    [IU Logo],
+  //    [Quelle]
+  //  )<iu_logo>
+  // 
+
+]
+
+// ══════════════════════════════════════════════════════════
+// Glossar / Abkürzungsverzeichnis
+// ══════════════════════════════════════════════════════════
+#let entry-list = (
+  // Beispiel:
+  // (
+  //   key: "ki",
+  //   short: "KI",
+  //   plural: "KIs",
+  //   long: "Künstliche Intelligenz",
+  //   longplural: "Künstliche Intelligenzen",
+  // ),
+  // Nutzung: @ki, @ki:pl, @Ki, @Ki:pl, @ki:short, @ki:long
+  // Doku: https://typst.app/universe/package/glossarium
 )
 
-// ── Titelblatt ───────────────────────────────────────────
-#set page(numbering: none)
-#titelblatt(
-	pruefungsform: pruefungsform,
-	kursname: kursname,
-	studiengang: studiengang,
-	titel: titel,
-	author: author,
-	matrikel: matrikel,
-	betreuertyp: betreuertyp,
-	betreuer: betreuer,
-	date: date,
+
+// ══════════════════════════════════════════════════════════
+// Dokument rendern
+// ══════════════════════════════════════════════════════════
+#show: structure.with(
+  titel: titel,
+  pruefungsform: pruefungsform,
+  kursname: kursname,
+  studiengang: studiengang,
+  author: author,
+  matrikel: matrikel,
+  betreuertyp: betreuertyp,
+  betreuer: betreuer,
+  date: date,
+  pagebreak_b4_abbildungsv: pagebreak_b4_abbildungsv,
+  pagebreak_b4_tabellenv: pagebreak_b4_tabellenv,
+  pagebreak_b4_glossar: pagebreak_b4_glossar,
+  body-content: body,
+  anhang-content: anhang,
+  entry-list: entry-list,
 )
-
-// ── Inhaltsverzeichnis & Abbildungsverzeichnis ───────────
-#set page(numbering: "I")
-#outline()
-
-// Anzeige ab 3 Abbildungen
-#context if query(figure.where(kind: image)).len() >= 3 {
-	if pagebreak_b4_abbildungsv { pagebreak() } else { v(6pt) }
-	outline(title: heading(level: 1, outlined: true, numbering: none)[Abbildungsverzeichnis], target: figure.where(kind: image))
-}
-
-// Anzeige ab 3 Tabellen
-#context if query(figure.where(kind: table)).len() >= 3 {
-	if pagebreak_b4_tabellenv { pagebreak() } else { v(6pt) }
-	outline(title: heading(level: 1, outlined: true, numbering: none)[Tabellenverzeichnis], target: figure.where(kind: table))
-}
-
-// Anzeige ab 1 referenziertem Glossareintrag
-#let has-gloss-ref(key) = {
-	let cap = upper(key.first()) + key.slice(1)
-	let labels = (
-		key,
-		cap,
-		key + ":pl",
-		cap + ":pl",
-		key + ":short",
-		key + ":long",
-	)
-	labels.any(lbl => query(ref.where(target: label(lbl))).len() > 0)
-}
-
-#if entry-list.len() > 0 {
-	context {
-		let used = entry-list.filter(e => has-gloss-ref(e.at("key")))
-		if used.len() > 0 {
-			if pagebreak_b4_glossar { pagebreak() }
-			heading(numbering: none, outlined: true)[Abkürzungsverzeichnis]
-		}
-	}
-
-	print-glossary(
-		entry-list,
-		user-print-gloss: abk_print_entry,
-	)
-}
-
-#pagebreak()
-
-// ── Body ─────────────────────────────────────────────────
-#set page(numbering: "1")
-#counter(page).update(1)
-
-#body
-
-// ── Quellenverzeichnis ───────────────────────────────────
-// Inspiriert von @yemouus Code (GitHub)
-#show bibliography: bib-it => {
-	set block(inset: 0in)
-	show block: block-it => context {
-		if block-it.body == auto {
-			block-it
-		} else {
-			if block-it.body.func() != [].func() {
-				block-it.body
-				parbreak()
-			} else {
-				par(block-it.body)
-			}
-		}
-	}
-	
-	bib-it
-}
-
-/* TODO:
-- Podcast fehlt Rolle, Episodennummer sollte kein Präfix haben, Typ wird nicht angezeigt
-- Filmen fehlt die Rolle
-*/
-
-#show bibliography: it => context if query(cite).len() > 0 { pagebreak(); it }
-#bibliography(
-	"bib/literatur.bib",
-	title: "Literaturverzeichnis",
-	style: "/csl/apa7-iu.csl"
-)
-
-// ── Anhangsverzeichnis ───────────────────────────────────
-#context if query(figure.where(kind: "anhang")).len() > 1 {
-	pagebreak()
-	outline(title: heading(level: 1, outlined: true, numbering: none)[Anhangsverzeichnis], target: figure.where(kind: "anhang"))
-}
-
-#show outline.entry: it => link(
-	it.element.location(),
-	it.indented(it.prefix(), it.inner()),
-)
-
-#context if query(figure.where(kind: "anhang")).len() > 0 {
-	pagebreak()
-}
-
-#anhang

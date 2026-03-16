@@ -41,15 +41,16 @@ Es gelten die Richtlinien für schriftliche Prüfungsformen sowie der Zitierleit
 
 ### Allgemein
 
-Der gesamte Inhalt der Arbeit wird in `content.typ` geschrieben. Dort werden auch die Angaben für das Titelblatt (Titel, Kursname, Studiengang etc.) eingetragen. Verzeichnisse (Inhalts-, Abbildungs-, Tabellen- und Abkürzungsverzeichnis) werden automatisch erstellt. Zur Vorschau und zum Kompilieren wird `main.typ` verwendet.
+Der gesamte Inhalt der Arbeit wird in `main.typ` geschrieben – dort werden Titelblatt-Daten, Text, Anhang und Glossareinträge gepflegt. Dieselbe Datei dient auch zur Vorschau und zum Kompilieren. Verzeichnisse (Inhalts-, Abbildungs-, Tabellen- und Abkürzungsverzeichnis) werden automatisch erstellt.
 
 ### Projektstruktur
 
 | Datei / Ordner | Beschreibung |
 | --- | --- |
-| `content.typ` | Inhalt der Arbeit, Titelblatt-Daten und Glossareinträge |
-| `main.typ` | Hauptdatei zum Kompilieren und für die Vorschau |
-| `template/` | Formatierungsvorlagen und Titelblatt-Layout |
+| `main.typ` | **Einzige Arbeitsdatei** – Titelblatt-Daten, Inhalt, Anhang, Glossar, Vorschau & Export |
+| `template/template.typ` | Formatierungsvorlage (Schrift, Abstände, Überschriften etc.) |
+| `template/structure.typ` | Dokumentstruktur (Titelblatt, Verzeichnisse, Seitennummerierung) |
+| `template/titelblatt.typ` | Titelblatt-Layout |
 | `bib/literatur.bib` | Literaturverzeichnis (aus Zotero exportiert) |
 | `csl/` | Zitierstile (APA 7 / IU-Anpassung) |
 | `img/` | Bilder und Logo |
@@ -58,23 +59,74 @@ Der gesamte Inhalt der Arbeit wird in `content.typ` geschrieben. Dort werden auc
 ## Logo
 Aus rechtlichen Gründen wird kein IU-Logo mitgeliefert.
 
-Wenn du ein eigenes Logo verwenden möchtest, lege es als `img/IU-logo.jpg` ab.
+Wenn du ein eigenes Logo verwenden möchtest, lege es als `img/logo.jpg` ab.
+
+### Kurzanleitung Typst-Syntax
+
+Die wichtigsten Formatierungen für den Body in `main.typ`:
+
+```typst
+= Level 1 Überschrift
+== Level 2 Überschrift
+
+- Aufzählung (ungeordnet)
+  - Verschachtelt
++ Nummerierte Aufzählung
+
+_kursiver Text_
+*fetter Text*
+$Mathematische Ausdrücke$
+
+// Zitieren
+@quelle-key              // Autorenname (Jahr)
+@quelle-key[S.~1--3]    // Autorenname (Jahr, S. 1–3)
+#cite(<quelle-key>)      // Für mehr Einstellungen
+
+// Verweise auf Anhang, Glossar, Abbildungen
+@verweis-key
+```
+
+Weiterführende Links:
+- [Typst Tutorial](https://typst.app/docs/tutorial/)
+- [Image-Dokumentation](https://typst.app/docs/reference/visualize/image/)
+- [Table-Dokumentation](https://typst.app/docs/reference/model/table/)
+- [Mathe-Notation](https://typst.app/docs/reference/math/)
 
 ### Abbildungen und Tabellen beschriften
 
 Mit der Funktion `qfigure(content, [caption], [Quelle])` können Abbildungen und Tabellen korrekt beschriftet werden:
 
 ```typst
+// Abbildung
 #qfigure(
   image("/img/beispiel.jpg"),
   [Beschreibung der Abbildung],
   [Eigene Darstellung]
-)
+)<bild-key>
+
+// Tabelle
+#qfigure(
+  table(columns: 2, [Zelle 1], [Zelle 2]),
+  [Beschreibung der Tabelle],
+  [Eigene Darstellung]
+)<tabelle-key>
+```
+
+### Anhang
+
+Anhänge werden im `anhang`-Block in `main.typ` mit `qfigure` eingefügt:
+
+```typst
+#qfigure(
+  image("/img/IU_logo.jpg"),
+  [IU Logo],
+  [Quelle]
+)<iu_logo>
 ```
 
 ### Abkürzungen
 
-Abkürzungen werden über das [Glossarium](https://typst.app/universe/package/glossarium)-Plugin verwaltet. Die Einträge werden am Ende von `content.typ` in der Liste `entry-list` definiert und können im Text mit `@abkürzung` referenziert werden. Das Abkürzungsverzeichnis wird nur angezeigt, wenn mindestens ein Eintrag referenziert wurde.
+Abkürzungen werden über das [Glossarium](https://typst.app/universe/package/glossarium)-Plugin verwaltet. Die Einträge werden in `main.typ` in der Liste `entry-list` definiert und können im Text mit `@abkürzung` referenziert werden. Das Abkürzungsverzeichnis wird nur angezeigt, wenn mindestens ein Eintrag referenziert wurde.
 
 ```typst
 // Definition in entry-list:
