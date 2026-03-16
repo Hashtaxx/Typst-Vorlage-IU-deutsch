@@ -41,7 +41,7 @@ Es gelten die Richtlinien für schriftliche Prüfungsformen sowie der Zitierleit
 
 ### Allgemein
 
-Der gesamte Inhalt der Arbeit wird in `main.typ` geschrieben – dort werden Titelblatt-Daten, Text, Anhang und Glossareinträge gepflegt. Dieselbe Datei dient auch zur Vorschau und zum Kompilieren. Verzeichnisse (Inhalts-, Abbildungs-, Tabellen- und Abkürzungsverzeichnis) werden automatisch erstellt.
+Der gesamte Inhalt der Arbeit wird in `main.typ` geschrieben – dort werden Titelblatt-Daten, Text, Anhang und Glossareinträge gepflegt. Dieselbe Datei dient auch zur Vorschau und zum Export. Verzeichnisse (Inhalts-, Abbildungs-, Tabellen- und Abkürzungsverzeichnis) werden automatisch erstellt.
 
 ### Projektstruktur
 
@@ -78,9 +78,9 @@ _kursiver Text_
 $Mathematische Ausdrücke$
 
 // Zitieren
-@quelle-key              // Autorenname (Jahr)
+@quelle-key             // Autorenname (Jahr)
 @quelle-key[S.~1--3]    // Autorenname (Jahr, S. 1–3)
-#cite(<quelle-key>)      // Für mehr Einstellungen
+#cite(<quelle-key>)     // Für mehr Einstellungen
 
 // Verweise auf Anhang, Glossar, Abbildungen
 @verweis-key
@@ -142,13 +142,21 @@ Abkürzungen werden über das [Glossarium](https://typst.app/universe/package/gl
 @ki:long  // → Künstliche Intelligenz
 ```
 
-## Zotero
+## Zotero (optional)
 
-### Schnellstart (Kurzfassung)
+Für das Literaturverzeichnis wird [Zotero](https://www.zotero.org/) mit [Better BibTeX](https://retorque.re/zotero-better-bibtex/) empfohlen. Die `.bib`-Datei kann aber auch manuell gepflegt werden.
+
+<details>
+<summary><b>Schnellstart</b></summary>
 
 1. Better BibTeX in Zotero installieren.
 2. `scripts/zotero-postscript.js` in den Better-BibTeX-Postscript-Bereich kopieren.
 3. Bibliothek/Sammlung als **Better BibLaTeX** nach `bib/literatur.bib` exportieren.
+
+</details>
+
+<details>
+<summary><b>Ausführliche Anleitung</b></summary>
 
 ### 1. Better BibTeX für Zotero installieren
 
@@ -170,7 +178,10 @@ Das Postscript sorgt dafür, dass Namensfelder, Organisationsautoren und bestimm
 3. Als Format **Better BibLaTeX** wählen.
 4. Die exportierte `.bib`-Datei als `bib/literatur.bib` in das Projektverzeichnis speichern (vorhandene Datei ersetzen).
 
-### Relevante Felder je Eintragsart in Zotero
+</details>
+
+<details>
+<summary><b>Relevante Felder je Eintragsart in Zotero</b></summary>
 
 Nur die hier gelisteten Felder werden für die korrekte Zitierung benötigt.
 
@@ -248,6 +259,9 @@ Nur die hier gelisteten Felder werden für die korrekte Zitierung benötigt.
 | Datum | Vollständiges Datum |
 | Titel | Titel: Untertitel |
 | Titel der Website | Institution oder Website |
+| DOI / URL | |
+
+</details>
 | DOI / URL | |
 
 ##### Internetquelle mit Institution als Autor:in
