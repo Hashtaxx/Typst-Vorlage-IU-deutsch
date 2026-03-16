@@ -144,34 +144,40 @@ Abkürzungen werden über das [Glossarium](https://typst.app/universe/package/gl
 
 ## Zotero (optional)
 
-Für das Literaturverzeichnis wird [Zotero](https://www.zotero.org/) mit [Better BibTeX](https://retorque.re/zotero-better-bibtex/) empfohlen. Die `.bib`-Datei kann aber auch manuell gepflegt werden.
+[Zotero](https://www.zotero.org/) ist ein kostenloses, quelloffenes Literaturverwaltungsprogramm, mit dem Quellen gesammelt, organisiert und zitiert werden können. Für das Literaturverzeichnis wird Zotero mit [Better BibTeX](https://retorque.re/zotero-better-bibtex/) empfohlen. Die `.bib`-Datei kann aber auch manuell gepflegt werden.
 
 <details>
 <summary><b>Schnellstart</b></summary>
 
-1. Better BibTeX in Zotero installieren.
-2. `scripts/zotero-postscript.js` in den Better-BibTeX-Postscript-Bereich kopieren.
-3. Bibliothek/Sammlung als **Better BibLaTeX** nach `bib/literatur.bib` exportieren.
+1. [Zotero](https://www.zotero.org/download/) herunterladen und installieren.
+2. Better BibTeX in Zotero installieren.
+3. `scripts/zotero-postscript.js` in den Better-BibTeX-Postscript-Bereich kopieren.
+4. Bibliothek/Sammlung als **Better BibLaTeX** nach `bib/literatur.bib` exportieren.
 
 </details>
 
 <details>
 <summary><b>Ausführliche Anleitung</b></summary>
 
-### 1. Better BibTeX für Zotero installieren
+### 1. Zotero installieren
+
+1. [Zotero](https://www.zotero.org/download/) herunterladen und installieren.
+2. Optional: Den [Zotero Connector](https://www.zotero.org/download/connectors) als Browsererweiterung installieren (verfügbar für Chrome, Firefox und Safari). Damit lassen sich Quellen direkt aus dem Browser in die Zotero-Bibliothek übernehmen.
+
+### 2. Better BibTeX für Zotero installieren
 
 1. [Better BibTeX](https://retorque.re/zotero-better-bibtex/installation/) herunterladen (`.xpi`-Datei).
 2. In Zotero: **Werkzeuge → Add-ons → Zahnrad-Symbol → Add-on aus Datei installieren** und die `.xpi`-Datei auswählen.
 3. Zotero neu starten.
 
-### 2. Postscript in Zotero kopieren
+### 3. Postscript in Zotero kopieren
 
 Das Postscript sorgt dafür, dass Namensfelder, Organisationsautoren und bestimmte Referenztypen korrekt für die IU-Zitierweise exportiert werden.
 
 1. In Zotero: **Bearbeiten → Einstellungen → Better BibTeX → Export → Postscript**.
 2. Den gesamten Inhalt von `scripts/zotero-postscript.js` in das Postscript-Feld einfügen und speichern.
 
-### 3. Literatur exportieren
+### 4. Literatur exportieren
 
 1. In Zotero die gewünschte Sammlung oder Bibliothek auswählen.
 2. **Rechtsklick → Sammlung exportieren** (oder **Datei → Bibliothek exportieren**).
