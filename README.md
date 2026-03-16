@@ -261,9 +261,6 @@ Nur die hier gelisteten Felder werden für die korrekte Zitierung benötigt.
 | Titel der Website | Institution oder Website |
 | DOI / URL | |
 
-</details>
-| DOI / URL | |
-
 ##### Internetquelle mit Institution als Autor:in
 
 | Zotero-Feld | IU-Feld / Vorgabe |
@@ -298,3 +295,5 @@ Nur die hier gelisteten Felder werden für die korrekte Zitierung benötigt.
 | Titel | Titel: Untertitel |
 | Art | unveröffentlichte Arbeit |
 | Ort | IU Internationale Hochschule |
+
+</details>
