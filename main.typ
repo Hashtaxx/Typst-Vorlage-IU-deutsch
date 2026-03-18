@@ -1,6 +1,7 @@
 #import "template/structure.typ": structure
-#import "template/template.typ": qfigure
+#import "template/functions.typ": qfigure
 #import "@preview/glossarium:0.5.10": gls, glspl
+
 
 // ══════════════════════════════════════════════════════════
 // Daten für Titelblatt eingeben
