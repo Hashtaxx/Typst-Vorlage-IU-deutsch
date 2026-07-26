@@ -19,6 +19,7 @@
   pagebreak_b4_abbildungsv: false,
   pagebreak_b4_tabellenv: false,
   pagebreak_b4_glossar: false,
+  genderhinweis: false,
   body-content: [],
   anhang-content: [],
   entry-list: (),
@@ -86,6 +87,14 @@
       entry-list,
       user-print-gloss: abk_print_entry,
     )
+  }
+  
+  if genderhinweis {
+    pagebreak()
+    heading(numbering: none, outlined: false)[Hinweis zur geschlechtergerechten Sprache]
+    par[
+      Aus Gründen der besseren Lesbarkeit wird in diesem Dokument überwiegend das generische Maskulinum verwendet. Selbstverständlich sind damit Personen aller Geschlechter gleichermaßen gemeint.  
+    ]
   }
   
   pagebreak()

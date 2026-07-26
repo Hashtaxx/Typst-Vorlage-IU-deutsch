@@ -22,6 +22,9 @@
 #let pagebreak_b4_tabellenv = false
 #let pagebreak_b4_glossar = false
 
+// Zeige Genderhinweis
+#let genderhinweis = false
+
 // ══════════════════════════════════════════════════════════
 // Inhalt
 // ══════════════════════════════════════════════════════════
@@ -95,6 +98,7 @@
   pagebreak_b4_abbildungsv: pagebreak_b4_abbildungsv,
   pagebreak_b4_tabellenv: pagebreak_b4_tabellenv,
   pagebreak_b4_glossar: pagebreak_b4_glossar,
+  genderhinweis: genderhinweis,
   body-content: body,
   anhang-content: anhang,
   entry-list: entry-list,
